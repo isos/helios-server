@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     'helios_auth',
     'helios',
     'server_ui',
+    'helioslog'
 )
 
 ##
