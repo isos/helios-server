@@ -2,7 +2,7 @@
 AUTH_SYSTEMS = {}
 
 import twitter, password, cas, facebook, google, yahoo, linkedin, clever
-import ldapauth, shibboleth
+import ldapauth
 
 AUTH_SYSTEMS['twitter'] = twitter
 AUTH_SYSTEMS['linkedin'] = linkedin
@@ -13,7 +13,6 @@ AUTH_SYSTEMS['google'] = google
 AUTH_SYSTEMS['yahoo'] = yahoo
 AUTH_SYSTEMS['clever'] = clever
 AUTH_SYSTEMS['ldap'] = ldapauth
-AUTH_SYSTEMS['shibboleth'] = shibboleth
 
 # not ready
 #import live

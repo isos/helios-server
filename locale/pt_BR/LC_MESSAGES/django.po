@@ -46,8 +46,7 @@ msgstr "Sem espaços, será parte da URL da sua eleição, por ex. meu-clube-201
 #: helios/templates/voters_list.html:146 helios/templates/voters_list.html:155
 #: helios/templates/voters_manage.html:29
 #: helios/templates/voters_upload_confirm.html:14
-#: heliosinstitution/templates/elections_administered.html:11
-#: heliosinstitution/templates/elections_summary.html:43
+
 msgid "Name"
 msgstr "Nome"
 
@@ -165,9 +164,6 @@ msgstr "ID do Eleitor"
 
 #: helios/models.py:54 helios/templates/stats_elections.html:21
 #: helios/templates/stats_recent_votes.html:12
-#: heliosinstitution/templates/institution_elections_stats.html:13
-#: heliosinstitution/templates/stats_elections.html:9
-#: heliosinstitution/templates/stats_recent_votes.html:9
 msgid "Election"
 msgstr "Eleição"
 
@@ -574,7 +570,6 @@ msgstr "voltar ao início"
 #: helios/templates/voters_list.html:140 helios/templates/voters_list.html:194
 #: helios/templates/voters_manage.html:17
 #: helios/templates/voters_manage.html:25
-#: heliosinstitution/templates/stats_admin_actions.html:15
 msgid "next"
 msgstr "próximo"
 
@@ -1373,7 +1368,6 @@ msgstr "Eleições que você administra"
 
 #: helios/templates/elections_administered.html:5
 #: helios/templates/elections_voted.html:4
-#: heliosinstitution/templates/elections_administered.html:29
 msgid "back to home"
 msgstr "voltar para início"
 
@@ -1473,8 +1467,6 @@ msgid "New Trustee"
 msgstr "Novo Apurador"
 
 #: helios/templates/new_trustee.html:9
-#: heliosinstitution/templates/institution_details.html:5
-#: heliosinstitution/templates/institution_details.html:15
 msgid "Name:"
 msgstr "Nome:"
 
@@ -1564,8 +1556,6 @@ msgid "Tweet"
 msgstr "Tuíte"
 
 #: helios/templates/stats.html:3 helios/templates/stats_elections.html:22
-#: heliosinstitution/templates/institution_elections_stats.html:14
-#: heliosinstitution/templates/stats_elections.html:10
 msgid "Admin"
 msgstr "Admin"
 
@@ -1573,7 +1563,6 @@ msgstr "Admin"
 #: helios/templates/stats_elections.html:3
 #: helios/templates/stats_problem_elections.html:3
 #: helios/templates/stats_recent_votes.html:3
-#: heliosinstitution/templates/left_side_menu.html:5
 msgid "Statistics"
 msgstr "Estatísticas"
 
@@ -1589,11 +1578,11 @@ msgstr "votos recentes"
 msgid "recent problem elections"
 msgstr "eleições problemáticas recentes"
 
-#: helios/templates/stats.html:13 heliosinstitution/templates/stats.html:11
+#: helios/templates/stats.html:13
 msgid "votes in queue."
 msgstr "votos na fila."
 
-#: helios/templates/stats.html:13 heliosinstitution/templates/stats.html:11
+#: helios/templates/stats.html:13s
 msgid "force it"
 msgstr "forçar"
 
@@ -1604,32 +1593,26 @@ msgstr "Ações Administrativas"
 #: helios/templates/stats_admin_actions.html:10
 #: helios/templates/stats_elections.html:10
 #: helios/templates/voters_list.html:133 helios/templates/voters_list.html:187
-#: heliosinstitution/templates/stats_admin_actions.html:9
 msgid "previous"
 msgstr "anterior"
 
 #: helios/templates/stats_admin_actions.html:13
-#: heliosinstitution/templates/stats_admin_actions.html:12
 msgid "Actions"
 msgstr "Ações"
 
 #: helios/templates/stats_admin_actions.html:21
-#: heliosinstitution/templates/stats_admin_actions.html:22
 msgid "User"
 msgstr "Usuário"
 
 #: helios/templates/stats_admin_actions.html:22
-#: heliosinstitution/templates/stats_admin_actions.html:23
 msgid "Action"
 msgstr "Ação"
 
 #: helios/templates/stats_admin_actions.html:23
-#: heliosinstitution/templates/stats_admin_actions.html:24
 msgid "Details"
 msgstr "Detalhes"
 
 #: helios/templates/stats_admin_actions.html:24
-#: heliosinstitution/templates/stats_admin_actions.html:25
 msgid "At"
 msgstr "Data e Hora"
 
@@ -1651,7 +1634,6 @@ msgid "Unfrozen for more than a day."
 msgstr "Desbloqueada por mais de um dia."
 
 #: helios/templates/stats_recent_votes.html:7
-#: heliosinstitution/templates/index.html:66 server_ui/templates/index.html:76
 msgid "Recent Votes"
 msgstr "Votos Recentes"
 
@@ -2090,8 +2072,6 @@ msgid "no votes yet"
 msgstr "nenhum voto"
 
 #: helios/templates/voters_list.html:150
-#: heliosinstitution/templates/index.html:88
-#: heliosinstitution/templates/institution_users.html:12
 msgid "E-mail"
 msgstr "E-mail:"
 
@@ -2236,18 +2216,6 @@ msgstr "Sim, carregar"
 msgid "no, let me upload a different file"
 msgstr "Não, deixe-me carregar um arquivo diferente"
 
-#: helios_auth/auth_systems/shibboleth.py:25
-msgid "Click here to login"
-msgstr "Clique aqui para se conectar"
-
-#: helios_auth/auth_systems/shibboleth.py:65
-msgid "Bad Username or Password"
-msgstr "Usuário ou Senha Incorretos"
-
-#: helios_auth/auth_systems/shibboleth.py:121
-msgid "Users with the following attributes:"
-msgstr "Eleitores com os seguintes atributos:"
-
 #: helios_auth/templates/index.html:4
 msgid "Authentication"
 msgstr "Autenticação"
@@ -2310,34 +2278,6 @@ msgstr "Seu nome de usuário"
 #: helios_auth/templates/password/forgot.html:18
 msgid "Send Reminder"
 msgstr "Enviar Lembrete"
-
-#: helios_auth/templates/shibboleth/missing_attributes.html:9
-msgid "Missing Attributes"
-msgstr "Atributos faltantes"
-
-#: helios_auth/templates/shibboleth/missing_attributes.html:11
-msgid "Some required attributes were not released by your Identity Provider."
-msgstr ""
-"Alguns atributos obrigatórios não foram informados pelo seu Provedor de "
-"Identidade."
-
-#: helios_auth/templates/shibboleth/missing_attributes.html:13
-msgid "Attributes not released by your Identity Provider"
-msgstr "Atributos não informados pelo seu Provedor de Identidade"
-
-#: helios_auth/templates/shibboleth/missing_attributes.html:16
-#: heliosinstitution/templates/user_metadata.html:13
-msgid "Attribute"
-msgstr "Atributo"
-
-#: helios_auth/templates/shibboleth/missing_attributes.html:17
-#: heliosinstitution/templates/user_metadata.html:14
-msgid "Value"
-msgstr "Valor"
-
-#: helios_auth/templates/shibboleth/missing_attributes.html:31
-msgid "Back"
-msgstr "Voltar"
 
 #: helios_auth/templates/twitter/follow.html:4
 msgid "Twitter Follow?"
@@ -2422,337 +2362,6 @@ msgstr ""
 #: heliosbooth/templates/submit.html:40
 msgid "Submit Ballot"
 msgstr "Enviar Cédula"
-
-#: heliosinstitution/admin.py:26
-msgid "Permissions"
-msgstr "Permissões"
-
-#: heliosinstitution/decorators.py:15 heliosinstitution/decorators.py:20
-msgid "You don't have permission to access this view"
-msgstr "Você não tem permissão para acessar essa view"
-
-#: heliosinstitution/models.py:136
-msgid "Can delegate institution management tasks"
-msgstr "Pode delegar tarefas de gestão da instituição"
-
-#: heliosinstitution/models.py:137
-msgid "Can revoke institution management tasks"
-msgstr "Pode revogar tarefas de gestão da instituição"
-
-#: heliosinstitution/models.py:138
-msgid "Can delegate election management tasks"
-msgstr "Pode delegar tarefas de gestão de eleição"
-
-#: heliosinstitution/models.py:139
-msgid "Can revoke election management tasks"
-msgstr "Pode revogar tarefas de gestão de eleição"
-
-#: heliosinstitution/models.py:153
-msgid "Institution Admin"
-msgstr "Gestor da Instituição"
-
-#: heliosinstitution/models.py:155
-msgid "Election Admin"
-msgstr "Gestor de Eleição"
-
-#: heliosinstitution/models.py:156
-msgid "Undefined"
-msgstr "Indefinido"
-
-#: heliosinstitution/views.py:109
-msgid "Please, provide a valid expires at value"
-msgstr "Por favor, informe uma data válida de expiração"
-
-#: heliosinstitution/views.py:121
-msgid "Expires at successfully saved."
-msgstr "Data de expiração salva com sucesso."
-
-#: heliosinstitution/views.py:125
-msgid "Something went wrong, please try again."
-msgstr "Ocorreu um erro, por favor, tente novamente."
-
-#: heliosinstitution/views.py:127 heliosinstitution/views.py:176
-msgid "An e-mail must be informed"
-msgstr "Um e-mail precisa ser informado"
-
-#: heliosinstitution/views.py:174
-msgid "E-mail successfully saved"
-msgstr "E-mail salvo com sucesso"
-
-#: heliosinstitution/views.py:201
-msgid "User successfully removed"
-msgstr "Usuário removido com sucesso."
-
-#: heliosinstitution/views.py:203
-msgid "User not found"
-msgstr "Usuário não encontrado"
-
-#: heliosinstitution/views.py:265 heliosinstitution/views.py:267
-#: heliosinstitution/views.py:269 heliosinstitution/views.py:271
-msgid "Success"
-msgstr "Sucesso"
-
-#: heliosinstitution/views.py:274
-msgid "Institution does not exist"
-msgstr "A instituição não existe"
-
-#: heliosinstitution/templates/dropdown.html:3
-msgid "All"
-msgstr "Todos"
-
-#: heliosinstitution/templates/elections_administered.html:5
-msgid "Elections you are current or past admin"
-msgstr "Eleições nas quais você é ou foi administrador (a)"
-
-#: heliosinstitution/templates/elections_administered.html:12
-msgid "Started at"
-msgstr "Iníciou em"
-
-#: heliosinstitution/templates/elections_administered.html:13
-msgid "Ended at"
-msgstr "Finalizou em"
-
-#: heliosinstitution/templates/elections_summary.html:11
-msgid "Institution"
-msgstr "Instituição"
-
-#: heliosinstitution/templates/elections_summary.html:12
-msgid "In progress"
-msgstr "Em andamento"
-
-#: heliosinstitution/templates/elections_summary.html:13
-#: heliosinstitution/templates/elections_summary.html:21
-msgid "Done"
-msgstr "Finalizadas"
-
-#: heliosinstitution/templates/elections_summary.html:20
-msgid "In Progress"
-msgstr "Em Andamento"
-
-#: heliosinstitution/templates/elections_summary.html:44
-msgid "Start"
-msgstr "Início"
-
-#: heliosinstitution/templates/elections_summary.html:45
-msgid "End"
-msgstr "  Fim"
-
-#: heliosinstitution/templates/index.html:21
-msgid "Welcome"
-msgstr "Bem vindo"
-
-#: heliosinstitution/templates/index.html:24 server_ui/templates/index.html:34
-msgid "create an election"
-msgstr "criar uma eleição"
-
-#: heliosinstitution/templates/index.html:35
-msgid "Year"
-msgstr "Ano"
-
-#: heliosinstitution/templates/index.html:48 server_ui/templates/index.html:51
-msgid "no featured elections at the moment"
-msgstr "nenhuma votação em destaque no momento"
-
-#: heliosinstitution/templates/index.html:53
-msgid "Your elections"
-msgstr "Suas eleições"
-
-#: heliosinstitution/templates/index.html:61
-#: heliosinstitution/templates/index.html:74
-msgid "See all"
-msgstr "Ver todas"
-
-#: heliosinstitution/templates/index.html:79
-msgid "Contact information"
-msgstr "Informações de contato"
-
-#: heliosinstitution/templates/index.html:81
-msgid "Main Phone: +55"
-msgstr "Fone principal: + 55"
-
-#: heliosinstitution/templates/index.html:82
-msgid "Secondary Phone: +55"
-msgstr "Fone secundário: + 55"
-
-#: heliosinstitution/templates/index.html:83
-#: heliosinstitution/templates/institution_details.html:9
-#: heliosinstitution/templates/institution_details.html:31
-msgid "Address:"
-msgstr "Endereço:"
-
-#: heliosinstitution/templates/index.html:85
-msgid "Your institution admins are:"
-msgstr "Os gestores do sistema na sua instituição são:"
-
-#: heliosinstitution/templates/index.html:92
-msgid "No institution admin"
-msgstr "Nenhum Gestor da Instituição"
-
-#: heliosinstitution/templates/institution_details.html:3
-msgid "Institution details"
-msgstr "Detalhes da instituição"
-
-#: heliosinstitution/templates/institution_details.html:6
-#: heliosinstitution/templates/institution_details.html:19
-msgid "Short name:"
-msgstr "Nome abreviado:"
-
-#: heliosinstitution/templates/institution_details.html:7
-#: heliosinstitution/templates/institution_details.html:23
-msgid "Main phone:"
-msgstr "Fone principal:"
-
-#: heliosinstitution/templates/institution_details.html:8
-#: heliosinstitution/templates/institution_details.html:27
-msgid "Sec phone:"
-msgstr "Fone secundário:"
-
-#: heliosinstitution/templates/institution_details.html:10
-msgid "Edit"
-msgstr "Editar"
-
-#: heliosinstitution/templates/institution_details.html:35
-msgid "Save"
-msgstr "Salvar"
-
-#: heliosinstitution/templates/institution_elections_stats.html:6
-msgid "Elections statistics for your institution"
-msgstr "Estatísticas de eleições da sua instituição"
-
-#: heliosinstitution/templates/institution_elections_stats.html:8
-msgid "Here are listed all the elections from your institution"
-msgstr "Aqui estão listadas as eleições da sua instituição."
-
-#: heliosinstitution/templates/institution_elections_stats.html:15
-#: heliosinstitution/templates/stats_elections.html:11
-msgid "Voters / cast votes"
-msgstr "Eleitores / votos depositados"
-
-#: heliosinstitution/templates/institution_users.html:4
-msgid "Users with role in your institution"
-msgstr "Usuários com papel na sua instituição"
-
-#: heliosinstitution/templates/institution_users.html:6
-msgid "Here are listed all the users assigned for your institution"
-msgstr ""
-"Aqui estão listados todos os usuários habilitados para a sua instituição"
-
-#: heliosinstitution/templates/institution_users.html:13
-msgid "Role"
-msgstr "Papel"
-
-#: heliosinstitution/templates/institution_users.html:14
-msgid "Active"
-msgstr "Ativo"
-
-#: heliosinstitution/templates/institution_users.html:15
-msgid "Expires at"
-msgstr "Expira em"
-
-#: heliosinstitution/templates/institution_users.html:24
-msgid "Yes"
-msgstr "Sim"
-
-#: heliosinstitution/templates/institution_users.html:24
-msgid "No"
-msgstr "Não"
-
-#: heliosinstitution/templates/institution_users.html:24
-msgid "User did not logged yet"
-msgstr "Usuário não logou ainda"
-
-#: heliosinstitution/templates/institution_users.html:32
-msgid "Remove user"
-msgstr "Remover usuário"
-
-#: heliosinstitution/templates/left_side_menu.html:3
-msgid "Dashboard"
-msgstr "Painel de Controle"
-
-#: heliosinstitution/templates/left_side_menu.html:4
-msgid "Manage Users"
-msgstr "Gerenciar Usuários"
-
-#: heliosinstitution/templates/left_side_menu.html:6
-msgid "Logs"
-msgstr "Registros"
-
-#: heliosinstitution/templates/left_side_menu.html:7
-msgid "View my details"
-msgstr "Ver meus detalhes"
-
-#: heliosinstitution/templates/manage_users.html:8
-msgid "Delegate Institution Admin"
-msgstr "Delegar Gestor da Instituição"
-
-#: heliosinstitution/templates/manage_users.html:11
-#: heliosinstitution/templates/manage_users.html:23
-msgid "Email address"
-msgstr "Endereço de e-mail"
-
-#: heliosinstitution/templates/manage_users.html:12
-#: heliosinstitution/templates/manage_users.html:24
-msgid "Enter email"
-msgstr "Informar e-mail"
-
-#: heliosinstitution/templates/manage_users.html:15
-#: heliosinstitution/templates/manage_users.html:26 helioslog/models.py:17
-msgid "Add"
-msgstr "Adicionar"
-
-#: heliosinstitution/templates/manage_users.html:20
-msgid "Add new Election Admin"
-msgstr "Adicionar novo Gestor de Eleição"
-
-#: heliosinstitution/templates/navbar-bootstrap.html:15
-#: server_ui/templates/navbar.html:9
-msgid "Home"
-msgstr "Início"
-
-#: heliosinstitution/templates/navbar-bootstrap.html:24
-#: server_ui/templates/navbar.html:18
-msgid "Logout"
-msgstr "Desconectar"
-
-#: heliosinstitution/templates/navbar-bootstrap.html:29
-#: server_ui/templates/navbar.html:23
-msgid "Federated Access"
-msgstr "Acesso Federado"
-
-#: heliosinstitution/templates/navbar-bootstrap.html:33
-msgid "Help"
-msgstr "Ajuda"
-
-#: heliosinstitution/templates/stats_admin_actions.html:6
-msgid "Admin actions"
-msgstr "Ações Administrativas"
-
-#: heliosinstitution/templates/stats_elections.html:3
-msgid "All Elections"
-msgstr "Todas as eleições"
-
-#: heliosinstitution/templates/stats_recent_votes.html:3
-#: heliosinstitution/templates/stats_recent_votes.html:11
-msgid "Recently cast votes"
-msgstr "Voto (s) depositado (s) recentemente"
-
-#: heliosinstitution/templates/stats_recent_votes.html:10
-msgid "Last cast vote"
-msgstr "Último voto depositado"
-
-#: heliosinstitution/templates/user_metadata.html:6
-msgid "User details"
-msgstr "Detalhes do Usuário"
-
-#: heliosinstitution/templates/user_metadata.html:8
-msgid "Here are listed all the attributes your Identity Provider has released"
-msgstr ""
-"Aqui estão listados todos os atributos que o seu Provedor de Identidade "
-"forneceu"
-
-#: heliosinstitution/templates/user_metadata.html:10
-msgid "Released attributes by your Identity Provider"
-msgstr "Atributos fornecidos pelo seu Provedor de Identidade"
 
 #: helioslog/models.py:18
 msgid "Delete"

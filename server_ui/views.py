@@ -14,18 +14,15 @@ from view_utils import *
 
 def get_election():
   return None
-  
+
 def home(request):
   from helios.models import Election
-  import heliosinstitution
 
   user = get_user(request)
 
-  if user and user.user_type == 'shibboleth':
-    return HttpResponseRedirect(reverse(heliosinstitution.views.home))
   # load the featured elections
   featured_elections = Election.get_featured()
-  
+
   create_p = can_create_election(request)
 
   if create_p:
@@ -37,7 +34,7 @@ def home(request):
     elections_voted = Election.get_by_user_as_voter(user, limit=5)
   else:
     elections_voted = None
- 
+
   auth_systems = copy.copy(settings.AUTH_ENABLED_AUTH_SYSTEMS)
   try:
     auth_systems.remove('password')
@@ -50,7 +47,7 @@ def home(request):
                                             'elections_voted' : elections_voted,
                                             'create_p':create_p,
                                             'login_box' : login_box})
-  
+
 def about(request):
   return render_template(request, "about")
 
@@ -62,4 +59,3 @@ def faq(request):
 
 def privacy(request):
   return render_template(request, "privacy")
-    

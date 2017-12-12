@@ -111,7 +111,6 @@ STATICFILES_DIRS = (
     ROOT_PATH + '/heliosverifier',
     ROOT_PATH + '/helios_auth/media',
     ROOT_PATH + '/server_ui/media',
-    ROOT_PATH + '/heliosinstitution/media/',
 )
 
 
@@ -185,7 +184,6 @@ INSTALLED_APPS = (
     'helios.apps.HeliosConfig',
     'server_ui',
     'helioslog.apps.HeliosLogConfig',
-    'heliosinstitution.apps.HeliosInstitutionConfig',
 )
 
 ##
@@ -241,7 +239,7 @@ HELIOS_PRIVATE_DEFAULT = False
 
 # authentication systems enabled
 #AUTH_ENABLED_AUTH_SYSTEMS = ['password','facebook','twitter', 'google', 'yahoo']
-AUTH_ENABLED_AUTH_SYSTEMS = get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'shibboleth').split(",")
+AUTH_ENABLED_AUTH_SYSTEMS = get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'google').split(",")
 AUTH_DEFAULT_AUTH_SYSTEM = get_from_env('AUTH_DEFAULT_AUTH_SYSTEM', None)
 
 # google
@@ -335,32 +333,6 @@ AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
 
 AUTH_LDAP_ALWAYS_UPDATE_USER = False
 
-# Shibboleth auth settings
-SHIBBOLETH_ATTRIBUTE_MAP = { 
-    #"Shibboleth-givenName": (True, "first_name"),
-    "Shib-inetOrgPerson-cn": (True, "common_name"),
-    "Shib-inetOrgPerson-sn": (True, "last_name"),
-    "Shib-inetOrgPerson-mail": (True, "email"),
-    "Shib-eduPerson-eduPersonPrincipalName": (True, "eppn"),
-    "Shib-brEduPerson-brEduAffiliationType": (True, "affiliation"),
-    "Shib-Identity-Provider": (True, "identity_provider"),
-}
-
-FEDERATION_NAME = "CAFe Expresso"
-
-# To use some manager-specific attributes, like idp address
-USE_ELECTION_MANAGER_ATTRIBUTES = True
-
-ELECTION_MANAGER_ATTRIBUTES = ['Provider']
-
-INSTITUTION_ROLE = ['Institution Admin','Election Admin']
-
-ATTRIBUTES_AUTOMATICALLY_CHECKED = ['brExitDate']
-
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-USE_EMBEDDED_DS = False
-# end shibboleth auth settings
 # Rollbar Error Logging
 ROLLBAR_ACCESS_TOKEN = get_from_env('ROLLBAR_ACCESS_TOKEN', None)
 if ROLLBAR_ACCESS_TOKEN:

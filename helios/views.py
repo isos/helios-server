@@ -1278,15 +1278,7 @@ def voters_eligibility(request, election):
   category_id = None
   eligibility = None
 
-  try:
-    # eligibility
-    eligibility = request.POST['eligibility']
-  except MultiValueDictKeyError:
-    if user.user_type == 'shibboleth':
-      shib_data = json.loads(request.body)
-      eligibility = shib_data['eligibility']
-      category_id = shib_data['category_id']    
-
+  eligibility = request.POST['eligibility']
 
   if eligibility in ['openreg', 'limitedreg']:
     election.openreg= True
@@ -1305,11 +1297,6 @@ def voters_eligibility(request, election):
     election.eligibility = None
 
   election.save()
-
-  if user.user_type == 'shibboleth' and eligibility == 'limitedreg':
-    response_data = {'success': _('Constraints successfully saved')}
-    return HttpResponse(json.dumps(response_data), content_type="application/json", 
-      status=200)
 
   return HttpResponseRedirect(settings.SECURE_URL_HOST + reverse(voters_list_pretty, args=[election.uuid]))
   
@@ -1521,12 +1508,8 @@ def ballot_list(request, election):
     limit = int(request.GET['limit'])
   if request.GET.has_key('after'):
     after = datetime.datetime.strptime(request.GET['after'], '%Y-%m-%d %H:%M:%S')
-    
+
   voters = Voter.get_by_election(election, cast=True, order_by='cast_at', limit=limit, after=after)
 
   # we explicitly cast this to a short cast vote
   return [v.last_cast_vote().ld_object.short.toDict(complete=True) for v in voters]
-
-
-
-
