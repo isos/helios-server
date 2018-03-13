@@ -27,7 +27,8 @@ class ElectionForm(forms.Form):
     help_text=_('disable this only if you want a simple election with reduced security but a simpler user interface'))
   randomize_answer_order = forms.BooleanField(required=False, initial=False,
     label=_("Randomize answer order"), help_text=_('enable this if you want the answers to questions to appear in random order for each voter'))
-  private_p = forms.BooleanField(required=False, initial=False, label=_("Private?"), help_text=_('A private election is only visible to registered voters.'))
+  private_p = forms.BooleanField(required=False, initial=True, label=_("Private?"),
+    help_text=_('A private election is only visible to registered voters.'))
   help_email = forms.CharField(required=False, initial="", label=_("Help Email Address"),
     help_text=_('An email address voters should contact if they need help.'),
     widget=forms.TextInput(attrs={'size':60}))
@@ -69,13 +70,33 @@ class ElectionTimesForm(forms.Form):
     widget=forms.DateTimeInput(format='%d/%m/%Y %H:%M'))
 
 class ElectionTimeExtensionForm(forms.Form):
-  voting_extended_until = SplitDateTimeField(help_text = _("UTC date and time voting extended to"),
-                                   widget=SplitSelectDateTimeWidget, required=False)
+  voting_extended_until = forms.DateTimeField(help_text = _("UTC date and time voting extended to"),
+    label = _("Voting extended until"),
+    input_formats=['%d/%m/%Y %H:%M'],
+    widget=forms.DateTimeInput(format='%d/%m/%Y %H:%M'),
+    required=False)
 
 class EmailVotersForm(forms.Form):
+  CHOICES = [
+    ('all', _('all voters')),
+    ('voted', _('voters who have cast a ballot')),
+    ('not-voted', _('voters who have not yet cast a ballot')),
+    ('not-sent',_("Only voters not sent yet"))
+    ]
   subject = forms.CharField(max_length=80, required=True)
   body = forms.CharField(max_length=4000, widget=forms.Textarea)
-  send_to = forms.ChoiceField(label=_("Send To"), initial="all", choices= [('all', _('all voters')), ('voted', _('voters who have cast a ballot')), ('not-voted', _('voters who have not yet cast a ballot'))])
+  send_to = forms.ChoiceField(label=_("Send To"), initial="all",
+  choices= CHOICES)
+
+  def __init__(self, *args, **kwargs):
+    super(EmailVotersForm, self).__init__(*args, **kwargs)
+
+    initial = kwargs.pop('initial', None)
+    if initial is not None and 'voters_total' in initial:
+        self.CHOICES[3] = ('not-sent',
+            _("Only voters not sent yet") + " (%s/%s)" % (initial['not_logged_as_sent'] ,
+            initial['voters_total']))
+        self.fields['send_to'].choices = self.CHOICES
 
 
 class TallyNotificationEmailForm(forms.Form):
