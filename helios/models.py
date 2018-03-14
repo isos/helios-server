@@ -147,6 +147,9 @@ class Election(HeliosModel):
   # downloadable election info
   election_info_url = models.CharField(max_length=300, null=True)
 
+  class Meta:
+    app_label = 'helios'
+
   def __unicode__(self):
     return self.name
 
@@ -249,6 +252,23 @@ class Election(HeliosModel):
       return cls.objects.get(short_name=short_name)
     except cls.DoesNotExist:
       return None
+    
+  def save_questions_safely(self, questions):
+    """
+    Because Django doesn't let us override properties in a Pythonic way... doing the brute-force thing.
+    """
+    # verify all the answer_urls
+    for q in questions:
+      for answer_url in q['answer_urls']:
+        if not answer_url or answer_url == "":
+          continue
+          
+        # abort saving if bad URL
+        if not (answer_url[:7] == "http://" or answer_url[:8]== "https://"):
+          return False
+    
+    self.questions = questions
+    return True
 
   def add_voters_file(self, uploaded_file):
     """
@@ -637,6 +657,7 @@ class Election(HeliosModel):
       prettified_result.append({'question': q['short_name'], 'answers': pretty_question})
 
     return prettified_result
+
     
 class ElectionLog(models.Model):
   """
@@ -650,6 +671,9 @@ class ElectionLog(models.Model):
   election = models.ForeignKey(Election)
   log = models.CharField(max_length=500)
   at = models.DateTimeField(auto_now_add=True)
+
+  class Meta:
+    app_label = 'helios'
 
 ##
 ## UTF8 craziness for CSV
@@ -689,6 +713,9 @@ class VoterFile(models.Model):
   processing_started_at = models.DateTimeField(auto_now_add=False, null=True)
   processing_finished_at = models.DateTimeField(auto_now_add=False, null=True)
   num_voters = models.IntegerField(null=True)
+
+  class Meta:
+    app_label = 'helios'
 
   def itervoters(self):
     if self.voter_file_content:
@@ -767,7 +794,6 @@ class VoterFile(models.Model):
 
     return num_voters
 
-
     
 class Voter(HeliosModel):
   election = models.ForeignKey(Election)
@@ -802,13 +828,14 @@ class Voter(HeliosModel):
 
   class Meta:
     unique_together = (('election', 'voter_login_id'))
+    app_label = 'helios'
 
   def __init__(self, *args, **kwargs):
     super(Voter, self).__init__(*args, **kwargs)
 
+  def get_user(self):
     # stub the user so code is not full of IF statements
-    if not self.user:
-      self.user = User(user_type='password', user_id=self.voter_email, name=self.voter_name)
+    return self.user or User(user_type='password', user_id=self.voter_email, name=self.voter_name)
 
   def __unicode__(self):
     return self.user.name
@@ -912,11 +939,11 @@ class Voter(HeliosModel):
 
   @property
   def name(self):
-    return self.user.name
+    return self.get_user().name
 
   @property
   def voter_id(self):
-    return self.user.user_id
+    return self.get_user().user_id
 
   @property
   def voter_id_hash(self):
@@ -937,20 +964,23 @@ class Voter(HeliosModel):
 
   @property
   def voter_type(self):
-    return self.user.user_type
+    return self.get_user().user_type
 
   @property
   def display_html_big(self):
-    return self.user.display_html_big
+    return self.get_user().display_html_big
       
   def send_message(self, subject, body):
-    self.user.send_message(subject, body)
+    self.get_user().send_message(subject, body)
+    
+  def can_update_status(self):
+    return self.get_user().can_update_status()
 
   def generate_password(self, length=10):
     if self.voter_password:
       raise Exception(_('password already exists'))
     
-    self.voter_password = heliosutils.random_string(length, alphabet='abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ23456789')
+    self.voter_password = heliosutils.random_string(length, alphabet='abcdefghjkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789')
 
   # metadata for the election
   @property
@@ -1006,8 +1036,11 @@ class CastVote(HeliosModel):
   verified_at = models.DateTimeField(null=True)
   invalidated_at = models.DateTimeField(null=True)
   
-    # auditing purposes, like too many votes from the same IP, if the case
-  cast_ip = models.IPAddressField(null=True)
+  # auditing purposes, like too many votes from the same IP, if it isn't expected
+  cast_ip = models.GenericIPAddressField(null=True)
+
+  class Meta:
+      app_label = 'helios'
 
   @property
   def datatype(self):
@@ -1097,6 +1130,9 @@ class AuditedBallot(models.Model):
   vote_hash = models.CharField(max_length=100)
   added_at = models.DateTimeField(auto_now_add=True)
 
+  class Meta:
+    app_label = 'helios'
+
   @classmethod
   def get(cls, election, vote_hash):
     return cls.objects.get(election = election, vote_hash = vote_hash)
@@ -1113,7 +1149,8 @@ class AuditedBallot(models.Model):
       query = query[:limit]
 
     return query
-    
+
+
 class Trustee(HeliosModel):
   election = models.ForeignKey(Election)
   
@@ -1146,7 +1183,8 @@ class Trustee(HeliosModel):
 
   class Meta:
     unique_together = (('election', 'email'))
-    
+    app_label = 'helios'
+
   def save(self, *args, **kwargs):
     """
     override this just to get a hook
