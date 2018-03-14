@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: helios-ifsc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-13 23:04-0300\n"
-"PO-Revision-Date: 2015-10-14 16:16-0300\n"
+"POT-Creation-Date: 2018-03-14 13:04-0300\n"
+"PO-Revision-Date: 2018-03-14 13:11-0300\n"
 "Last-Translator: Shirlei Chaves <shirlei@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -96,23 +96,23 @@ msgstr ""
 msgid "Private?"
 msgstr "Privada?"
 
-#: helios/forms.py:30
+#: helios/forms.py:31
 msgid "A private election is only visible to registered voters."
 msgstr "Uma eleição privada só é visível para eleitores registrados."
 
-#: helios/forms.py:31
+#: helios/forms.py:32
 msgid "Help Email Address"
 msgstr "Endereço de Email para Ajuda"
 
-#: helios/forms.py:32
+#: helios/forms.py:33
 msgid "An email address voters should contact if they need help."
 msgstr "Endereço de email que os eleitores devem usar para pedir ajuda."
 
-#: helios/forms.py:36
+#: helios/forms.py:37
 msgid "Election Info Download URL"
 msgstr "URL de download de informações da Eleição:"
 
-#: helios/forms.py:36
+#: helios/forms.py:37
 msgid ""
 "the URL of a PDF document that contains extra election information, e.g. "
 "candidate bios and statements"
@@ -120,7 +120,11 @@ msgstr ""
 "a URL de um documento PDF que contém informações extras, p. ex., biografias "
 "e declarações dos candidatos"
 
-#: helios/forms.py:39 helios/forms.py:54
+#: helios/forms.py:40 helios/forms.py:61
+msgid "Voting starts at"
+msgstr "Votação inicia em"
+
+#: helios/forms.py:41 helios/forms.py:62
 msgid "UTC date and time when voting begins"
 msgstr "Data e horário de início da votação"
 
@@ -140,7 +144,11 @@ msgstr "Data e horário da extensão da votação"
 msgid "Voting extended until"
 msgstr "Votação estentida até"
 
-#: helios/forms.py:81 helios/forms.py:105
+#: helios/forms.py:82 helios/forms.py:89 helios/templates/voters_email.html:70
+msgid "Send To"
+msgstr "Enviar para"
+
+#: helios/forms.py:82 helios/forms.py:90
 msgid "all voters"
 msgstr "todos os eleitores"
 
@@ -148,19 +156,19 @@ msgstr "todos os eleitores"
 msgid "voters who have cast a ballot"
 msgstr "eleitores que depositaram uma cédula"
 
-#: helios/forms.py:83
+#: helios/forms.py:82
 msgid "voters who have not yet cast a ballot"
 msgstr "eleitores que ainda não depositaram uma cédula"
 
-#: helios/forms.py:73
+#: helios/forms.py:91
 msgid "only voters who cast a ballot"
 msgstr "apenas eleitores que lançaram uma cédula"
 
-#: helios/forms.py:107
+#: helios/forms.py:92
 msgid "no one -- are you sure about this?"
 msgstr "nenhum - você tem certeza disso?"
 
-#: helios/forms.py:77 helios/templates/_castconfirm_password.html:10
+#: helios/forms.py:95 helios/templates/_castconfirm_password.html:10
 #: helios/templates/_castconfirm_password.html:11
 msgid "Voter ID"
 msgstr "ID do Eleitor"
@@ -1011,16 +1019,29 @@ msgid "copy"
 msgstr "copiar"
 
 #: helios/templates/election_view.html:30
-msgid "featured on the front page."
-msgstr "destacada na página inicial."
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "this %(pretty_type)s is featured on the front page.\n"
+msgid " this %(election.election_type)s is featured on the front page. "
+msgstr ""
+"\n"
+"Essa %(pretty_type)s está destacada na página inicial.\n"
 
 #: helios/templates/election_view.html:32
 msgid "unfeature it"
 msgstr "remover destaque"
 
 #: helios/templates/election_view.html:35
-msgid "is <u>not</u> featured on the front page."
-msgstr "<u>não está</u> destacada na página inicial."
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "this %(pretty_type)s is featured on the front page.\n"
+msgid ""
+" this %(election.election_type)s is <u>not</u> featured on the front page."
+msgstr ""
+"\n"
+"Essa %(pretty_type)s está destacada na página inicial.\n"
 
 #: helios/templates/election_view.html:37
 msgid "feature it"
@@ -1092,11 +1113,7 @@ msgid "freeze ballot and open election."
 msgstr "congelar cédula e abrir eleição."
 
 #: helios/templates/election_view.html:154
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "once you do this, the election will be ready for voting and will open "
-#| "automatically\n"
+#, python-format
 msgid ""
 "\n"
 "\t\t\t\t\tonce you do this, the election will be ready for voting and will "
@@ -1105,8 +1122,9 @@ msgid ""
 "\t\t\t\t"
 msgstr ""
 "\n"
-"após fazer isso, a eleição estará pronta para votação e será aberta "
-"automaticament\n"
+" após fazer isso, a eleição estará pronta para votação e será aberta "
+"automaticamente em \n"
+"%(election.voting_starts_at)s, conforme sua configuração. "
 
 #: helios/templates/election_view.html:159
 msgid "once you do this, the election will be immediately open for voting."
@@ -1303,12 +1321,12 @@ msgid "preview booth"
 msgstr "pré-visualização da urna"
 
 #: helios/templates/election_view.html:336
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "review the <a href=\"%(vote_url)s\">voting booth</a>.\n"
 msgstr ""
-" \n"
+"\n"
 "revisar a <a href=\"%(vote_url)s\">cabine de votação</a>.\n"
 
 #: helios/templates/elections_administered.html:5
@@ -2557,7 +2575,7 @@ msgid ""
 "bottom” audit of its voting systems.\n"
 msgstr ""
 
-#: server_ui/templates/base.html:49
+#: server_ui/templates/base.html:43
 msgid "logged in as"
 msgstr "Conectado como "
 
@@ -2878,20 +2896,20 @@ msgid ""
 "</ul>\n"
 msgstr ""
 
-#: settings.py:86
+#: settings.py:88
 msgid "English"
 msgstr "Inglês"
 
-#: settings.py:87
+#: settings.py:89
 msgid "Brazilian Portuguese"
 msgstr "Português Brasileiro"
 
-#: settings.py:222
-msgid "IFSC E-Voting System"
+#: settings.py:223
+msgid "Helios E-Voting System"
 msgstr "Sistema de Votação Online do IFSC"
 
-#: settings.py:230
-msgid "Welcome to IFSC E-Voting System"
+#: settings.py:231
+msgid "Welcome to Helios E-Voting System"
 msgstr "Bem Vindo ao Sistema de Votação Online do IFSC"
 
 #: templates/403.html:3
@@ -2927,14 +2945,11 @@ msgstr "Erro no servidor"
 msgid "There was an error while handling your request."
 msgstr "Houve um erro durante o processamento de sua requisição."
 
-#, fuzzy
-#~| msgid ""
-#~| "\n"
-#~| "this %(pretty_type)s is featured on the front page.\n"
-#~ msgid " this %(election.election_type)s is featured on the front page. "
-#~ msgstr ""
-#~ "\n"
-#~ "Essa %(pretty_type)s está destacada na página inicial.\n"
+#~ msgid "featured on the front page."
+#~ msgstr "destacada na página inicial."
+
+#~ msgid "is <u>not</u> featured on the front page."
+#~ msgstr "<u>não está</u> destacada na página inicial."
 
 #~ msgid "Constraints successfully saved"
 #~ msgstr "Restrições salvas com sucesso."
