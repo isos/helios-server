@@ -183,10 +183,10 @@ INSTALLED_APPS = (
     ## in Django 1.7 we now use built-in migrations, no more south
     ## 'south',
     ## HELIOS stuff
-    'helios_auth.apps.HeliosAuthConfig',
-    'helios.apps.HeliosConfig',
+    'helios_auth',
+    'helios',
     'server_ui',
-    'helioslog.apps.HeliosLogConfig',
+    'helioslog',
 )
 
 ##
