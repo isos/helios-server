@@ -7,8 +7,11 @@
               <li>
                 <a class="navbar-brand" style="color:#FFFFFF;" href="/">{% trans "Home" %}</a>
               </li>
-            {% if user and user.admin_p %}
+              {% if user %}
+              {% if user.admin_p %}
                 <li><a class="navbar-brand " style="color:#FFFFFF;" href="{% url "helios.stats_views.home" %}">Admin</a></li>
+              {% endif %}
+                <li><a class="navbar-brand"  style="color:#FFFFFF;" href="{% url "helios_auth.views.logout" %}?return_url={{CURRENT_URL}}">{% trans "Logout" %}</a></li>
             {% else %}
               <li>
               <a class="navbar-brand" style="color:#FFFFFF;" href="{{SECURE_URL_HOST}}{% url "helios_auth.views.start" system_name=auth_system %}?return_url={{return_url}}"> {% trans "Login" %} </a>
